@@ -1,6 +1,6 @@
 package com.openclassrooms.arista.data.repository
 
-import com.openclassrooms.arista.data.FakeApiService
+import com.openclassrooms.arista.data.api.FakeApiService
 import com.openclassrooms.arista.domain.model.User
 
 class UserRepository(private val apiService: FakeApiService = FakeApiService()) {

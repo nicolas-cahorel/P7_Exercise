@@ -1,12 +1,10 @@
-package com.openclassrooms.arista.data
+package com.openclassrooms.arista.data.api
 
 import com.openclassrooms.arista.domain.model.Exercise
 import com.openclassrooms.arista.domain.model.ExerciseCategory
 import com.openclassrooms.arista.domain.model.Sleep
 import com.openclassrooms.arista.domain.model.User
 import java.time.LocalDateTime
-import java.util.Arrays
-import java.util.Optional
 
 class FakeApiService {
 
