@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetAllExercisesUseCase @Inject constructor(private val exerciseRepository: ExerciseRepository) {
     fun execute(): List<Exercise> {
-        return exerciseRepository.allExercises
+        return exerciseRepository.getAllExercises()
     }
 }

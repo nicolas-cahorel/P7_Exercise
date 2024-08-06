@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetAllSleepsUseCase @Inject constructor(private val sleepRepository: SleepRepository) {
     fun execute(): List<Sleep> {
-        return sleepRepository.allSleeps
+        return sleepRepository.getAllSleep()
     }
 }

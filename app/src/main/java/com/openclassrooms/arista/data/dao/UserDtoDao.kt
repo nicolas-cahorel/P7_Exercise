@@ -16,6 +16,6 @@ interface UserDtoDao {
     fun getUser(): Flow<UserDto?>
 
     @Query("DELETE FROM user")
-    suspend fun deleteUser()
+    suspend fun deleteUserById(id: Long)
 
 }

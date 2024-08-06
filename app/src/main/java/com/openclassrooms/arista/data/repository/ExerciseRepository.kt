@@ -3,12 +3,11 @@ package com.openclassrooms.arista.data.repository
 import com.openclassrooms.arista.data.dao.ExerciseDtoDao
 import com.openclassrooms.arista.domain.model.Exercise
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 
 class ExerciseRepository(private val exerciseDao: ExerciseDtoDao) {
 
 
-    // Get all exercises
+    // Get all  records
     suspend fun getAllExercises(): List<Exercise> {
         return exerciseDao.getAllExercises()
             .first() // Collect the first emission of the Flow
@@ -16,13 +15,13 @@ class ExerciseRepository(private val exerciseDao: ExerciseDtoDao) {
     }
 
 
-    // Add a new exercise
+    // Add a new exercise record
     suspend fun addExercise(exercise: Exercise) {
         exerciseDao.insertExercise(exercise.toDto()) // Convert every Exercise in DTO
     }
 
 
-    // Delete an exercise
+    // Delete an exercise record
     suspend fun deleteExercise(exercise: Exercise) {
         // If there is no id, you can raise an exception and catch it in the use case and viewmodel
         exercise.id?.let {

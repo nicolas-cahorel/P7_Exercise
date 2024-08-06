@@ -58,23 +58,26 @@ abstract class AppDatabase : RoomDatabase() {
 
         suspend fun populateDatabase(sleepDao: SleepDtoDao, userDtoDao: UserDtoDao) {
 
+            val startTime = LocalDateTime.now().minusDays(1).atZone(ZoneOffset.UTC).toInstant().toEpochMilli()
+            val durationSleep1 = 420
+            val durationSleep2 = 360
+            val durationSleep3 = 480
+            val minToMilli = 60*1000
+
             // Sleep Data insertion
             sleepDao.insertSleep(
                 SleepDto(
-                    startTime = LocalDateTime.now().minusDays(1).atZone(ZoneOffset.UTC).toInstant()
-                        .toEpochMilli(), duration = 420, quality = 8
+                    startTime = startTime, endTime = startTime + durationSleep1 * minToMilli, duration = durationSleep1, quality = 8
                 )
             )
             sleepDao.insertSleep(
                 SleepDto(
-                    startTime = LocalDateTime.now().minusDays(2).atZone(ZoneOffset.UTC).toInstant()
-                        .toEpochMilli(), duration = 360, quality = 5
+                    startTime = startTime, endTime = startTime + durationSleep2 * minToMilli, duration = durationSleep2, quality = 5
                 )
             )
             sleepDao.insertSleep(
                 SleepDto(
-                    startTime = LocalDateTime.now().minusDays(3).atZone(ZoneOffset.UTC).toInstant()
-                        .toEpochMilli(), duration = 480, quality = 9
+                    startTime = startTime, endTime = startTime + durationSleep3 * minToMilli, duration = durationSleep3, quality = 9
                 )
             )
 

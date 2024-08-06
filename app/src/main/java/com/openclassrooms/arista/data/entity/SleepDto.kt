@@ -14,6 +14,9 @@ data class SleepDto(
     @ColumnInfo(name = "start_time")
     var startTime: Long,
 
+    @ColumnInfo(name = "end_time")
+    var endTime: Long,
+
 
     @ColumnInfo(name = "duration")
     var duration: Int,
