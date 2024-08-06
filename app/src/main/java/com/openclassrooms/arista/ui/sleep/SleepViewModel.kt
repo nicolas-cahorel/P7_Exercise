@@ -1,24 +1,32 @@
 package com.openclassrooms.arista.ui.sleep
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.openclassrooms.arista.domain.model.Sleep
 import com.openclassrooms.arista.domain.usecase.GetAllSleepsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SleepViewModel @Inject constructor(private val getAllSleepsUseCase: GetAllSleepsUseCase) :
     ViewModel() {
-    private val _sleeps = MutableStateFlow<List<Sleep>>(emptyList())
-    val sleeps: StateFlow<List<Sleep>> = _sleeps.asStateFlow()
+    private val _sleepsFlow = MutableStateFlow<List<Sleep>>(emptyList())
+    val sleepsFlow: StateFlow<List<Sleep>> = _sleepsFlow.asStateFlow()
 
-    fun fetchSleeps() {
-        val sleepList = getAllSleepsUseCase.execute()
-        _sleeps.value = sleepList
+    init {
+        fetchSleeps()
     }
+
+    private fun fetchSleeps() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val sleepList = getAllSleepsUseCase.execute()
+            _sleepsFlow.value = sleepList
+        }
+    }
+
 }

@@ -40,7 +40,7 @@ class SleepFragment : Fragment() {
 
     private fun setupObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.sleeps.collect { sleeps ->
+            viewModel.sleepsFlow.collect { sleeps ->
                 sleepAdapter.updateData(sleeps)
             }
         }
