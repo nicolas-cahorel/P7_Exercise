@@ -1,11 +1,15 @@
 package com.openclassrooms.arista.domain.model
 
 import com.openclassrooms.arista.data.entity.SleepDto
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.util.TimeZone
 
 data class Sleep(
     val id: Long?,
-    val startTime: Long,
-    val endTime: Long,
+    val startTime: LocalDateTime,
+    val endTime: LocalDateTime,
     val duration: Int,
     val quality: Int
 ) {
@@ -13,8 +17,8 @@ data class Sleep(
         fun fromDto(dto: SleepDto): Sleep {
             return Sleep(
                 id = dto.id,
-                startTime = dto.startTime,
-                endTime = dto.endTime,
+                startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(dto.startTime),TimeZone.getDefault().toZoneId()),
+                endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(dto.endTime),TimeZone.getDefault().toZoneId()),
                 duration = dto.duration,
                 quality = dto.quality
             )
@@ -24,8 +28,8 @@ data class Sleep(
     fun toDto(): SleepDto {
         return SleepDto(
             id = id ?: throw IllegalArgumentException("Sleep Id should not be null"),
-            startTime = startTime,
-            endTime = endTime,
+            startTime = startTime.toInstant(ZoneOffset.UTC).toEpochMilli(),
+            endTime = endTime.toInstant(ZoneOffset.UTC).toEpochMilli(),
             duration = duration,
             quality = quality
         )

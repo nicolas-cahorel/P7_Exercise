@@ -13,14 +13,6 @@ data class Exercise(
     var category: ExerciseCategory,
     var intensity: Int
 ) {
-    fun toDto() = ExerciseDto(
-        id = id ?: throw IllegalArgumentException("Id should not be null"),
-        startTime = startTime.toInstant(ZoneOffset.UTC).toEpochMilli(),
-        duration = duration,
-        category = category.toString(),
-        intensity = intensity
-    )
-
     companion object {
         fun fromDto(dto: ExerciseDto): Exercise {
             return Exercise(
@@ -32,4 +24,14 @@ data class Exercise(
             )
         }
     }
+
+    fun toDto() = ExerciseDto(
+        id = id ?: throw IllegalArgumentException("Id should not be null"),
+        startTime = startTime.toInstant(ZoneOffset.UTC).toEpochMilli(),
+        duration = duration,
+        category = category.toString(),
+        intensity = intensity
+    )
+
+
 }

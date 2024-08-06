@@ -22,7 +22,7 @@ class SleepViewModel @Inject constructor(private val getAllSleepsUseCase: GetAll
         fetchSleeps()
     }
 
-    private fun fetchSleeps() {
+    fun fetchSleeps() {
         viewModelScope.launch(Dispatchers.IO) {
             val sleepList = getAllSleepsUseCase.execute()
             _sleepsFlow.value = sleepList
