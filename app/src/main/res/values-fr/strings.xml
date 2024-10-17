@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Arista</string>
+    <string name="app_name">P7E_Arista</string>
     <string name="user_data">Données Utilisateur</string>
     <string name="exercise">Exercices</string>
     <string name="sleep">Sommeil</string>

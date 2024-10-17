@@ -21,4 +21,7 @@ data class UserDto(
 
     @ColumnInfo(name = "password")
     var password: String,
+
+    @ColumnInfo(name = "age")
+    var age: Int,
 )
